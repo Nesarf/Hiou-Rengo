@@ -12,7 +12,7 @@
 一、现在这里有什么
 --------------------------------------------------------------------
 
-    hello.hmyr    第一个程序。它存在的理由是「这里能写程序」这句话要有证据。
+    hello.hmoca    第一个程序。它存在的理由是「这里能写程序」这句话要有证据。
 
 两份东西，没有第三份。这不是省略，是一期的形状：先证明这个目录能站人，
 再往里搬东西。
@@ -23,7 +23,7 @@
 
 现在还借语言仓库的启动器，因为「跑」这一层属于 湯の岡，还没有 HMYR 写的 VM：
 
-    node "D:\himeyuri\bin\hmyr.mjs" "D:\Hiou Rengo\hello.hmyr"
+    node "D:\himeyuri\bin\hmyr.mjs" "D:\Hiou Rengo\hello.hmoca"
 
 输出：
 
@@ -33,7 +33,7 @@
 第二行是 main 的返回值 —— 解释那条路会把它一起打出来，那是 REPL 的显示选择。
 只要那一行字的话走编译那条：
 
-    node "D:\himeyuri\bin\hmyr.mjs" --compile "D:\Hiou Rengo\hello.hmyr"
+    node "D:\himeyuri\bin\hmyr.mjs" --compile "D:\Hiou Rengo\hello.hmoca"
 
 输出就只有那一行。两条入口的差别不是随手定的，语言仓库的 bin/hmyr.mjs
 文件头写着理由。

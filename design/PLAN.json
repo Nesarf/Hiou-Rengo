@@ -1,7 +1,7 @@
 {
   "title": "Hiou Rengo：用 HMYR 写程序所需要的一切",
   "version": 1,
-  "note": "这一份是 Hiou Rengo 自己的目标网络。上位路线在 HMYR 仓库的 design/FULLSELF.txt 第七、八节：Hiou Rengo 负责「写」，Yunooka 负责「跑」。判据的形状与那一侧不同 —— 这个仓库还借别人的启动器，所以它的判据主要是「那条命令跑得出那一行字」，以及「搬进来的东西有没有自己的验收」。KID 与 KPB 属于这一层（第十节），但现在都还不在这里。",
+  "note": "这一份是 Hiou Rengo 自己的目标网络。上位路线在 HMYR 仓库的 design/FULLSELF.txt 第七、八节：Hiou Rengo 负责「写」，Yunooka 负责「跑」。判据的形状与那一侧不同 —— 这个仓库还借别人的启动器，所以它的判据主要是「那条命令跑得出那一行字」，以及「搬进来的东西有没有自己的验收」。用户那一轮点的规划（整合包、Ichiwatashi 扩展件、Miketsukami、签名、以及 Core 与 ASA 两个仓库）现在都在这张网里；而它们的读法与边界写在 Yunooka 仓库的 design/HIREN.txt —— 那一份是「Yunooka 这一侧需要知道的形状」，这一份是「这一侧要做什么」。两份不重复：那边说为什么，这边说做什么。",
   "goals": [
     {
       "id": "first-program",
@@ -11,7 +11,10 @@
       "parent": "sdk",
       "after": [],
       "verifiedBy": [],
-      "touches": ["hello.hmoca", "README.md"],
+      "touches": [
+        "hello.hmoca",
+        "README.md"
+      ],
       "notes": "node \"D:\\himeyuri\\bin\\hmyr.mjs\" \"D:\\Hiou Rengo\\hello.hmoca\" 打印「緋凰·恋語 ready: 14」并以 0 退出。没有 verifiedBy 是因为验收本身就是那条命令 —— 它跑在语言仓库的启动器上，而这一侧还没有自己的尺子（见 acceptance）。"
     },
     {
@@ -20,9 +23,13 @@
       "scope": "stage",
       "status": "open",
       "parent": "sdk",
-      "after": ["first-program"],
+      "after": [
+        "first-program"
+      ],
       "verifiedBy": [],
-      "touches": ["README.md"],
+      "touches": [
+        "README.md"
+      ],
       "notes": "语言仓库的 self/ 那一套是语言的实现，不是给外面的人的库；两者现在互锁，因为库要用语言的内部形状。这一条要的是把它们分开 —— 而分开的第一步是给库一个不依赖内部形状的接口。"
     },
     {
@@ -31,9 +38,13 @@
       "scope": "stage",
       "status": "open",
       "parent": "sdk",
-      "after": ["first-program"],
+      "after": [
+        "first-program"
+      ],
       "verifiedBy": [],
-      "touches": ["README.md"],
+      "touches": [
+        "README.md"
+      ],
       "notes": "语言仓库的 tools 四十三件都围着那个仓库转（打包、清单、发布、检查）。搬到这一侧之前，它们要先能在一个不认识那个仓库的地方工作 —— 否则搬过来的是一堆写着绝对路径的脚本。"
     },
     {
@@ -42,9 +53,14 @@
       "scope": "task",
       "status": "open",
       "parent": "sdk",
-      "after": ["library", "tooling"],
+      "after": [
+        "library",
+        "tooling"
+      ],
       "verifiedBy": [],
-      "touches": ["README.md"],
+      "touches": [
+        "README.md"
+      ],
       "notes": "这一条最要紧，也是一期缺的三样里最容易被跳过的一样。语言仓库的 test/ 验的是语言，不是这个 SDK；搬进来的东西如果没有自己的验收，就等于没有尺子 —— 而一个能被改坏却查不到的东西，等于没人看着。"
     },
     {
@@ -53,10 +69,14 @@
       "scope": "stage",
       "status": "open",
       "parent": "sdk",
-      "after": ["library"],
+      "after": [
+        "library"
+      ],
       "verifiedBy": [],
-      "touches": ["README.md"],
-      "notes": "KID（Kohane Index Desuno）是依赖层 —— 声明、许可、哈希；KPB 是作编混的一整套。按第七节那条判据（给写程序的人用的归 SDK、给跑程序的人用的归 OS）它们归这一层。注意 KID 同时也在 Yunooka 的系统软件那份名单上：作为「装依赖的那一件事」它属于 OS，作为「一套自己的依赖纪律」它属于 SDK。"
+      "touches": [
+        "README.md"
+      ],
+      "notes": "KID（Kohane Index Desuno）是依赖层 —— 声明、许可、哈希；KPB 是作编混的一整套。按第七节那条判据（给写程序的人用的归 SDK、给跑程序的人用的归 OS）它们归这一层。注意 KID 同时也在 Yunooka 的系统软件那份名单上：作为「装依赖的那一件事」它属于 OS，作为「一套自己的依赖纪律」它属于 SDK。 【KPB 进 KID 已定（用户确认）】所以 KID 的清单是：索引（Kohane 那六层）、即刻文件分析、盘健康、以及 KPB（作编混）。而 KID 的两重身份也在这一条里：作为「装依赖的那一件事」它属于 OS，作为「一套自己的依赖纪律」它属于 SDK —— 所以装 HIREN 时要避免把 KID 装两遍（装之前先查它在不在，在就跳过）。"
     },
     {
       "id": "sdk",
@@ -66,8 +86,71 @@
       "parent": null,
       "after": [],
       "verifiedBy": [],
-      "touches": ["README.md", "hello.hmoca"],
+      "touches": [
+        "README.md",
+        "hello.hmoca"
+      ],
       "notes": "判据是「一个人能用 HMYR 写程序而不碰 JavaScript」。今天还不成立 —— 入口仍是 HMYR 仓库的 bin/hmyr.mjs，那是一个 JavaScript 启动器。"
+    },
+    {
+      "id": "core-asa",
+      "title": "两个仓库：Core 与 ASA",
+      "scope": "project",
+      "status": "open",
+      "parent": "sdk",
+      "after": [],
+      "verifiedBy": [],
+      "touches": [
+        "README.md",
+        "design/PLAN.json"
+      ],
+      "notes": "用户点下：基础（本仓库）与扩展分成两个本地仓库 —— Hiou Rengo-Core 与 Hiou Rengo-ASA（ASA 是 Ain Soph Aur，无限光）。基础 8 GB 以内、放 D 盘；扩展不设上限（初步 325 GB）、放 G 盘；可以先在 D 盘开发、再放到 G 盘。而那条分界**不是大小** —— 查语言仓库的 design/FILETYPE.txt 之后，它是那里一条已经写下的规矩：容器「不进 SDK 与 OS 的发布包」，理由是分发（单个文件过大会撞上传限制），它只在用户装好之后在自己机器上即时编译；同一条规矩下还有 runtime/ucd 那 45 MB 不进包那句，而文件里管它叫「一条已有的欠账」。所以 Core 是**能进发布包**的那一份（装好之后自己编不出来、必须随包带上），ASA 是**不能进**的那一份（语料、外部档案、大件素材）。这条边界比两个数结实：数会随规模漂，而「能不能进发布包」不会 —— 以后判断一件东西该放哪一侧，问那一句，不量体积。「先在 D 盘开发再放到 G 盘」是一条通道，而它要有判据：**移过去之后那边能建起来**，不是「移过去之后文件都在」—— 一个仓库能不能建，与它的文件在不在是两件事。实况：D 盘 47.1 GB 空闲、G 盘 1286.9 GB 空闲；ASA 还没建，而它应当是空的（与本仓库一期同一种起法：先证明那个目录能站人）。"
+    },
+    {
+      "id": "signing",
+      "title": "出包时签名：S.M.Y.T.",
+      "scope": "stage",
+      "status": "open",
+      "parent": "sdk",
+      "after": [
+        "tooling"
+      ],
+      "verifiedBy": [],
+      "touches": [
+        "README.md"
+      ],
+      "notes": "用户点下：Yunooka / HIREN / HMYR 三个仓库未来出包时都用 S.M.Y.T. 签名，而 OnlySign 是**验**的那一侧（住在 Yunooka 的系统层）。两侧分工的根子是它们回答的问题不同：签名防**故意**（有人改了并把校验和也重算了），校验和防**误改**（一个字节变了就报）。所以这一条属于「写」的那一侧 —— 它是出包流程的一步，不是运行时的一件事。判据：签过的包在 Yunooka 上验得过，而改一个字节之后验不过。它现在缺的是格式本身 —— 最小的形状是「一段密文 + 明文 hash」，而公钥从哪来要定（盘上、还是只在内存里），而那一条决定「换一块盘插过来」时验得通不通。"
+    },
+    {
+      "id": "interop",
+      "title": "别的语言做成 HMYR 整合包",
+      "scope": "project",
+      "status": "blocked",
+      "parent": "sdk",
+      "after": [
+        "library"
+      ],
+      "verifiedBy": [],
+      "touches": [
+        "README.md"
+      ],
+      "notes": "用户点下：把 C / C++ / Java / C# / Lua / Rust / Python / JavaScript / Go 等做成整合包装到 Yunooka，并让 win / mac / linux / android 的产物在 Yunooka 里「可辨认与读写」。两句读法要定死，否则会与「纯净 Yunooka 只认识 HMYR」打架。一、**整合包本身是 HMYR 包**，包里是用 HMYR 写的那个语言的实现（解释器或编译器）—— 所以那些语言是被**解释**的、不是被原生装载的；用户那句「子语言」正指向这条路，那些语言在这里是 HMYR 的子语言，不是与它并列的东西。二、**包装不需要新发明格式**：HMYR 的容器 .hm-ittgn-krgn-m（十二単）已经允许 GB 级、内部至多 12 层、层里放 HMYR 原生扩展名与 HMYR 支持的外部格式、扩展名只在最外层出现一次。而「直接跑」这条路被用户否掉了 —— 原话是「有些太明目张胆」，那是**定位判断**：那些产物一旦原样跑起来，这台机器就成了另一个兼容层。二次编译是另一条（更彻底也更贵），两条都到时候再说。另注：「可辨认与读写」不含「可执行」—— 后者要 PE 装载器与 Win32 的 API 表面，贵一个数量级。 【移出 open】条件：HMYR 要先能读文件、写文件 —— 一个语言的实现要读源、要写目标。"
+    },
+    {
+      "id": "domains",
+      "title": "领域套件：Ichiwatashi 的扩展件与 Miketsukami",
+      "scope": "stage",
+      "status": "blocked",
+      "parent": "sdk",
+      "after": [
+        "kits",
+        "library"
+      ],
+      "verifiedBy": [],
+      "touches": [
+        "README.md"
+      ],
+      "notes": "两件，都由用户点名。一、Ichiwatashi 的扩展件：lineweight（线条重量）、从 SAI / PS / AI 里挑出来的能力（画笔引擎的压感与混色、图层与蒙版、矢量路径与变换）、以及把它们做成扩展件。二、Miketsukami（名字是用户给的）：RhinoCeros 的几何（NURBS、布尔、网格）加 Keil 的固件工具链（编译器、链接器、调试器、烧写）。**「魔改」在这两件里只有一种读法成立：照着它们的能力做自己的实现**，不是改别人的二进制 —— 那在这台机器上不成立（没有它们的运行时），在别的地方也不该走。所以落法是「能力清单」而不是「产品移植」，而挑哪些能力要按工具的日常定，不是按「那个软件有什么」定。Miketsukami 那个组合有内在理由：Rhino 给形状、Keil 给让它动起来的代码，共同点是把一个设计变成一件实物 —— 所以它是「造物」那一侧的软件，与 Ichiwatashi（画）不在同一层。 【移出 open】条件：HMYR 能读写；以及一个数值内核（几何那边的浮点与求交）。"
     }
   ]
 }

@@ -15,7 +15,7 @@
         "hello.hmoca",
         "README.md"
       ],
-      "notes": "node \"D:\\himeyuri\\bin\\hmyr.mjs\" \"D:\\Hiou Rengo\\hello.hmoca\" 打印「緋凰·恋語 ready: 14」并以 0 退出。没有 verifiedBy 是因为验收本身就是那条命令 —— 它跑在语言仓库的启动器上，而这一侧还没有自己的尺子（见 acceptance）。"
+      "notes": "node \"<语言仓库>/bin/hmyr.mjs\" \"hello.hmoca\" 打印「緋凰·恋語 ready: 14」并以 0 退出。没有 verifiedBy 是因为验收本身就是那条命令 —— 它跑在语言仓库的启动器上，而这一侧还没有自己的尺子（见 acceptance）。"
     },
     {
       "id": "library",
